@@ -98,6 +98,7 @@ public class BombSquare extends GameSquare
         {
             return;
         }
+        
         square.setChecked(square);
         square.setImage("0.png");
         System.out.println("Square is Zero");
@@ -105,7 +106,14 @@ public class BombSquare extends GameSquare
         {
             for(int j=-1;j<2;j++)
             {
-                search((BombSquare)board.getSquareAt((getXLocation()+i),(getYLocation()+j))); //call fill method to find next square
+                if((square.getXLocation()+i)>-1 && (square.getXLocation()+i)<30 && (square.getYLocation()+j)>-1 && (square.getYLocation()+j)<30)
+                    {
+                        search((BombSquare)board.getSquareAt((square.getXLocation()+i),(square.getYLocation()+j))); //call fill method to find next square
+                    }
+                else
+                {
+                    return;
+                }
             }
         }
 
